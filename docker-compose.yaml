@@ -11,8 +11,21 @@ services:
       - app-network
     volumes:
       - ./logs/server:/app/log
+      
 
-  client:
+  client1:
+    build:
+      context: .
+      dockerfile: client.Dockerfile
+    depends_on:
+      - server
+    networks:
+      - app-network
+    volumes:
+      - ./logs/client:/app/log
+
+
+  client2:
     build:
       context: .
       dockerfile: client.Dockerfile
